@@ -11,12 +11,15 @@ export default class LocationDropdown extends Component {
         console.log(e.target);// ตอนนั้นอยู่ที่ไหน
         let locationName = e.target.getAttribute('data-name');
         console.log(locationName);
+        this.setState(
+            {
+                label : locationName
+            }
+        )
     }
 
     render() {
         let locations = this.props.locations;
-
-        // let defaultLabel = this.props.defaultLabel;
 
         return (
             <div class="dropdown">

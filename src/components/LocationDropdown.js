@@ -3,6 +3,10 @@ import React, { Component } from 'react'
 // same export.modules = class
 export default class LocationDropdown extends Component {
 
+    state = {
+        label: this.props.defaultLabel
+    }
+
     locationSelected(e){
         console.log(e.target);// ตอนนั้นอยู่ที่ไหน
         let locationName = e.target.getAttribute('data-name');
@@ -12,7 +16,7 @@ export default class LocationDropdown extends Component {
     render() {
         let locations = this.props.locations;
 
-        let defaultLabel = this.props.defaultLabel;
+        // let defaultLabel = this.props.defaultLabel;
 
         return (
             <div class="dropdown">
@@ -24,7 +28,8 @@ export default class LocationDropdown extends Component {
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false">
-                {defaultLabel}
+                {/* {defaultLabel} */}
+                {this.state.label}
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">

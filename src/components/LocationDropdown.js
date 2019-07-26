@@ -2,8 +2,17 @@ import React, { Component } from 'react'
 
 // same export.modules = class
 export default class LocationDropdown extends Component {
+
+    locationSelected(e){
+        console.log(e.target);// ตอนนั้นอยู่ที่ไหน
+        let locationName = e.target.getAttribute('data-name');
+        console.log(locationName);
+    }
+
     render() {
         let locations = this.props.locations;
+
+        let defaultLabel = this.props.defaultLabel;
 
         return (
             <div class="dropdown">
@@ -15,7 +24,7 @@ export default class LocationDropdown extends Component {
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false">
-                Dropdown link
+                {defaultLabel}
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -26,7 +35,7 @@ export default class LocationDropdown extends Component {
                 {/* for loop */}
                     {
                         locations.map((location,index)=>{
-                            return <a class="dropdown-item" href="#" key={location.id} data-id={location.id} data-name={location.name} >{location.name}</a>
+                            return <a class="dropdown-item" onClick={e => this.locationSelected(e)} href="#" key={location.id} data-id={location.id} data-name={location.name} >{location.name}</a>
                         })
                     }
                 </div>

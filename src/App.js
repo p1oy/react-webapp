@@ -9,11 +9,12 @@ function App() {
   let provinces = [
     { name: 'Bangkok' , id:1},
     { name: 'Nonthaburi' , id:2 }
-  ]
+  ];
+
   return (
     // className="App"
     <div >
-      <LocationDropdown locations={provinces} />
+      <LocationDropdown defaultLabel="จังหวัด" locations={provinces} />
     </div>
   );
 }

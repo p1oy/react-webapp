@@ -2,7 +2,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import LocationDropdown from './components/LocationDropdown';
+// import LocationDropdown from './components/LocationDropdown';
+import ThaiLocationSelectForm from './components/ThaiLocationSelectForm';
 
 // function component
 function App() {
@@ -14,7 +15,8 @@ function App() {
   return (
     // className="App"
     <div >
-      <LocationDropdown defaultLabel="จังหวัด" locations={provinces} />
+      {/* <LocationDropdown defaultLabel="จังหวัด" locations={provinces} /> */}
+      <ThaiLocationSelectForm/>
     </div>
   );
 }

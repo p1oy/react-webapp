@@ -31,13 +31,55 @@ export default class ThaiLocationSelectForm extends Component {
             ]
         }
     ]
+
+    state = {}
+
+    selectedProvince = (provinceName) => {
+        console.log('เลือกจังหวัด' + provinceName);
+        let chosenProvince = this.provinces.find( province =>{
+            return province.name === provinceName;
+        });
+
+        this.setState({
+            selectedProvince: chosenProvince
+        });
+    }
+
+    selectedDistrict = (districtName) => {
+        console.log(`เลือกเขต/อำเภอ ${districtName}`);
+
+        let chosenDistrict = this.state.selectedProvince.districts.find(district => {
+            return district.name === districtName
+        })
+
+        this.setState({
+            selectedDistrict: chosenDistrict
+        });
+    }
     
     render() {
+        let districtDropdown;
+        
+        if(this.state.selectedProvince){
+            let districts = this.state.selectedProvince.districts;
+            districtDropdown =  <LocationDropdown defaultLabel="เขต/อำเภอ" locations={districts} selectedCallback={this.selectedDistrict}  />
+        }
+
+
+        let khwangDropDown;
+
+        if(this.state.selectedDistrict) {
+            let khwangs = this.state.selectedDistrict.khwangs;
+            khwangDropDown = <LocationDropdown defaultLabel="แขวง/ตำบล" locations={khwangs}/>
+        }
+
         return (
             <div>
-                <LocationDropdown defaultLabel="จังหวัด" locations={this.provinces} />
-                <LocationDropdown defaultLabel="เขต/อำเภอ" locations={this.provinces} />
-                <LocationDropdown defaultLabel="แขวง/ตำบล" locations={this.provinces} />
+                <LocationDropdown defaultLabel="จังหวัด" locations={this.provinces} selectedCallback={this.selectedProvince} />
+                {/* <LocationDropdown defaultLabel="เขต/อำเภอ" locations={this.provinces} /> */}
+                {districtDropdown}
+                {/* <LocationDropdown defaultLabel="แขวง/ตำบล" locations={this.provinces} /> */}
+                {khwangDropDown}
             </div>
         )
     }

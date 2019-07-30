@@ -15,7 +15,10 @@ export default class LocationDropdown extends Component {
             {
                 label : locationName
             }
-        )
+        );
+        if(this.props.selectedCallback){ // check undefinded or null return false
+            this.props.selectedCallback(locationName);
+        }
     }
 
     render() {
